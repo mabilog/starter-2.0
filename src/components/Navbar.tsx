@@ -1,23 +1,32 @@
+import { Link } from "@/navigation";
 import { Navigation, getNavigationById } from "@/utils/getNavigation";
-import React from "react";
-import LocaleSwitcher from "./LocaleSwitcher";
+import { locales, stringToLocale } from "@/config";
+
+type Props = {
+  locale: (typeof locales)[number];
+};
+
+const LocaleLink = ({ locale }: Props) => {
+  return (
+    <Link href="/" locale={locale}>
+      {locale.toUpperCase()}
+    </Link>
+  );
+};
 
 const Navbar = async ({ params }: { params: { locale: string } }) => {
-  console.log("navbar params", params);
-
   const nav = (await getNavigationById("main", params.locale)) as Navigation;
-  console.log("nav", nav.navLink);
-  // console.log("nav.navLink", nav.navLink);
+
+  const locale = stringToLocale(params.locale);
+
+  if (!locale) {
+    return <div>Invalid locale</div>;
+  }
+
   return (
     <>
       <div>
         {nav.navLink.map((link) => {
-          console.log(
-            "params.locale + '/' + link.page?.url",
-            link.externalUrl
-              ? link.externalUrl
-              : `/${params.locale}/${link.page?.url}`
-          );
           return (
             <a
               key={link.id}
@@ -31,8 +40,10 @@ const Navbar = async ({ params }: { params: { locale: string } }) => {
             </a>
           );
         })}
+        {locales.map((locale) => (
+          <LocaleLink key={locale} locale={locale} />
+        ))}
       </div>
-      <LocaleSwitcher />
     </>
   );
 };
