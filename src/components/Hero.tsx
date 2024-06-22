@@ -48,11 +48,11 @@ const Hero = ({
             ""
           )}
         </div>
-        {image && (
+        {/* {image && (
           <div className="mt-10 sm:mt-0">
-            <Image className="height-auto lg:mt-0 " src={image} alt="" />
+            <Image className="height-auto lg:mt-0 " src={image.url} alt="" />
           </div>
-        )}
+        )} */}
       </div>
     </Main>
   );

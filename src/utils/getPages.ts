@@ -71,6 +71,7 @@ export type Stripe = ProductGrid | CallToAction;
 export interface LandingPage {
   landingPageTitle: string;
   link: string;
+  locale: string;
   blogPosts: BlogPost[];
   productCategories: ProductCategory[];
   sellerInformation: SellerInformation[];
@@ -92,6 +93,7 @@ export async function getPageBySlug(id: string, locale: string) {
         id
         landingPageTitle
         link
+        locale
         blogPosts {
           title
           slug
@@ -158,16 +160,14 @@ export async function getPageBySlug(id: string, locale: string) {
   `;
 
   try {
-    const { landingPage }: PageBySlugResponse = await hygraphClient.request(
-      query,
-      {
+    const { landingPage }: { landingPage: LandingPage } =
+      await hygraphClient.request(query, {
         link: id,
         locale: lang,
-      }
-    );
+      });
     console.log("landingPage", landingPage);
 
-    if (!landingPage || !landingPage.landingPage) {
+    if (!landingPage) {
       console.warn("No landing page found for the given locale: ", locale);
       return null;
     }

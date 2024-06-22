@@ -4,13 +4,10 @@ import { LandingPage, getPageBySlug } from "@/utils/getPages";
 
 export default async function Home({ params }: { params: { locale: string } }) {
   const landingPage = (await getPageBySlug("/", params.locale)) as LandingPage;
-
-  console.log("landingPage", landingPage);
-
+  const { stripes } = landingPage;
   return (
     <main className="">
-      hi
-      {/* {stripes &&
+      {stripes &&
         stripes.map((stripe) => {
           if (stripe.__typename === "CallToAction") {
             console.log("stripe", stripe);
@@ -35,7 +32,7 @@ export default async function Home({ params }: { params: { locale: string } }) {
             // console.log(stripe);
             return <>hello</>;
           }
-        })} */}
+        })}
     </main>
   );
 }
