@@ -17,9 +17,7 @@ export type Navigation = {
 };
 
 export async function getNavigationById(id: string, locale: string) {
-  console.log("id, locale", id, locale);
   const lang = stringToLocale(locale);
-  console.log("id, lang", id, lang);
 
   const query = gql`
     query Navigation($id: String!, $locale: Locale!) {
@@ -53,9 +51,8 @@ export async function getNavigationById(id: string, locale: string) {
   try {
     const { navigation }: { navigation: Navigation } =
       await hygraphClient.request(query, { id, locale: lang });
-    // console.log("navigation", navigation);
     return navigation;
   } catch (error) {
-    console.log("Erro fetching navigation:", error);
+    console.log("Error fetching navigation:", error);
   }
 }

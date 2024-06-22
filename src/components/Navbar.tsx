@@ -1,6 +1,7 @@
 import { Link } from "@/navigation";
 import { Navigation, getNavigationById } from "@/utils/getNavigation";
 import { locales, stringToLocale } from "@/config";
+import { useParams } from "next/navigation";
 
 type Props = {
   locale: (typeof locales)[number];
@@ -33,7 +34,8 @@ const Navbar = async ({ params }: { params: { locale: string } }) => {
               href={
                 link.externalUrl
                   ? link.externalUrl
-                  : params.locale + "/" + link.page?.url
+                  : // : params.locale + "/" + link.page?.url
+                    link.page?.url
               }
             >
               {link.displayText}
