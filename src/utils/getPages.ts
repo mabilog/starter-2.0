@@ -85,7 +85,7 @@ export interface PageBySlugResponse {
 
 export async function getPageBySlug(id: string, locale: string) {
   const lang = stringToLocale(locale);
-  console.log("locale", locale);
+  console.log("id", id);
 
   const query = gql`
     query PageBySlug($link: String!, $locale: Locale!) {
@@ -165,7 +165,6 @@ export async function getPageBySlug(id: string, locale: string) {
         link: id,
         locale: lang,
       });
-    console.log("landingPage", landingPage);
 
     if (!landingPage) {
       console.warn("No landing page found for the given locale: ", locale);

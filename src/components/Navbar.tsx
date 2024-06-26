@@ -27,6 +27,7 @@ const Navbar = async ({ params }: { params: { locale: string } }) => {
   return (
     <>
       <div>
+        <a href="/">Home</a>
         {nav.navLink.map((link) => {
           return (
             <a
