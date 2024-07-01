@@ -1,7 +1,7 @@
 import { Link } from "@/navigation";
-import { Navigation, getNavigationById } from "@/utils/getNavigation";
+import { getNavigationById } from "@/utils/getNavigation";
 import { locales, stringToLocale } from "@/config";
-import { useParams } from "next/navigation";
+import { Navigation, NavLink } from "@/utils/interfaces";
 
 type Props = {
   locale: (typeof locales)[number];
@@ -17,7 +17,6 @@ const LocaleLink = ({ locale }: Props) => {
 
 const Navbar = async ({ params }: { params: { locale: string } }) => {
   const nav = (await getNavigationById("main", params.locale)) as Navigation;
-
   const locale = stringToLocale(params.locale);
 
   if (!locale) {
@@ -27,15 +26,19 @@ const Navbar = async ({ params }: { params: { locale: string } }) => {
   return (
     <>
       <div>
-        {nav.navLink.map((link) => {
+        <a href="/">Home</a>
+        {nav.navLink.map((link: NavLink) => {
+          const isCategory = link.page?.url.startsWith("/categories/");
+
           return (
             <a
               key={link.id}
               href={
                 link.externalUrl
                   ? link.externalUrl
-                  : // : params.locale + "/" + link.page?.url
-                    link.page?.url
+                  : isCategory
+                  ? link.page?.url
+                  : `/${link.page?.url}`
               }
             >
               {link.displayText}

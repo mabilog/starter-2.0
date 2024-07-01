@@ -2,6 +2,10 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const withNextIntl = createNextIntlPlugin();
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  images: {
+    remotePatterns: [{ hostname: "ca-central-1.graphassets.com" }],
+  },
+};
 
 export default withNextIntl(nextConfig);

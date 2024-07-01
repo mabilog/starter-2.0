@@ -1,38 +1,14 @@
 import Hero from "@/components/Hero";
+import Landing from "@/components/Landing";
 import ProductGrid from "@/components/ProductGrid";
-import { LandingPage, getPageBySlug } from "@/utils/getPages";
+import { getPageBySlug } from "@/utils/getPages";
+import { LandingPage } from "@/utils/interfaces";
 
 export default async function Home({ params }: { params: { locale: string } }) {
   const landingPage = (await getPageBySlug("/", params.locale)) as LandingPage;
-  const { stripes } = landingPage;
   return (
     <main className="">
-      {stripes &&
-        stripes.map((stripe) => {
-          if (stripe.__typename === "CallToAction") {
-            console.log("stripe", stripe);
-            return (
-              <Hero
-                key={stripe.id}
-                button={{
-                  text: stripe?.button?.text,
-                  url: stripe?.button?.url,
-                }}
-                description={stripe?.body.html}
-                title={stripe?.heading}
-                image={{
-                  url: stripe?.image?.url,
-                  width: stripe?.image?.width,
-                  height: stripe?.image?.height,
-                }}
-              />
-            );
-          }
-          if (stripe.__typename === "ProductGrid") {
-            // console.log(stripe);
-            return <>hello</>;
-          }
-        })}
+      <Landing landingPage={landingPage} />
     </main>
   );
 }
