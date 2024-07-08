@@ -18,9 +18,10 @@ export default function ProductGrid({
           </h2>
         )}
         <div className="">
-          {products.map((product: ProductProp) => (
-            <Product key={product.id} product={product} />
-          ))}
+          {products.map((product: ProductProp) => {
+            console.log("product", product);
+            return <Product key={product.id} product={product} />;
+          })}
         </div>
       </div>
     </Main>

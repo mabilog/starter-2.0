@@ -39,7 +39,7 @@ export interface Product {
   productSlug: string;
   productPrice: number;
   productDescription: HtmlContent;
-  productImage: Image[];
+  productImages: Image[];
   ProductCategories: ProductCategoryForGrid[];
 }
 

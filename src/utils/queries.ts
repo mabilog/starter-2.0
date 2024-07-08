@@ -49,7 +49,7 @@ export const PAGE_BY_SLUG_QUERY = gql`
             productCategories {
               categoryName
             }
-            productImage {
+            productImages {
               url
               height
               width

@@ -8,7 +8,7 @@ const Product = function ({
   product: ProductProps;
   key: string;
 }) {
-  const thumbnail = product.productImage[0];
+  const thumbnail = product.productImages[0];
 
   return (
     <div className="" key={key}>

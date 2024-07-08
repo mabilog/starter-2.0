@@ -1,7 +1,11 @@
 import React from "react";
 
-const CategoriesSlug = () => {
-  return <div>CategoriesSlug</div>;
+const CategoriesSlug = ({
+  params,
+}: {
+  params: { locale: string; slug: string };
+}) => {
+  return <div>{params.slug}</div>;
 };
 
 export default CategoriesSlug;

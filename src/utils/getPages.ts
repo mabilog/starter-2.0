@@ -17,8 +17,6 @@ export async function getPageBySlug(link: string, locale: string) {
       return null;
     }
 
-    console.log("landingPage", landingPage);
-
     return landingPage;
   } catch (error) {
     console.error("Error fetching Page by slug: ", error);

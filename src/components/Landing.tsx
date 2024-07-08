@@ -5,6 +5,7 @@ import ProductGrid from "./ProductGrid";
 
 const Landing = ({ landingPage }: { landingPage: LandingPage }) => {
   const { stripes } = landingPage;
+
   return (
     <div>
       {stripes &&

@@ -11,7 +11,7 @@ export async function getProducts(locale: string) {
       PRODUCTS,
       { locale: lang }
     );
-
+    console.log("products", products);
     return products;
   } catch (error) {
     console.log("Error fetching products", error);
